@@ -1,38 +1,48 @@
-import React, { useState } from 'react'
-import Navbar from './Navbar'
+import React, { useState } from 'react';
+import Navbar from './Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../features/user/thunk';
+import './movieSearch.css'
 
 const MovieSearch = () => {
-    const [query, setQuery] = useState('');
-    const dispatch = useDispatch()
-    const {user , loading} = useSelector(state => state.user)
+  const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
+  const { user, loading } = useSelector(state => state.user);
 
-    const handleChange = (e)=>{
-        const newQuery = e.target.value.toLowerCase();
-        setQuery(newQuery);
-        dispatch(fetchUser(newQuery))
-    }
+  const handleChange = (e) => {
+    const newQuery = e.target.value.toLowerCase();
+    setQuery(newQuery);
+    dispatch(fetchUser(newQuery));
+  };
 
   return (
     <>
-      <Navbar/>
-      <div className="container">
-        <div className="row">
-            <div className="col-md-4">
-                <input type="text" 
-                className='w-100 bg-transparent border my-4 px-3 py-2 rounded text-white'
-                placeholder='Search movie by name'
-                onChange={handleChange}
-                value={query}/>
-            </div>
+      <Navbar />
+      <div className="container py-4">
+        <h2 className="text-center text-warning mb-3">🔎 Search Movies</h2>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <input
+              type="text"
+              className="form-control bg-dark text-white border-warning rounded px-3 py-2 mb-4"
+              placeholder="Search movie by name..."
+              onChange={handleChange}
+              value={query}
+            />
+          </div>
+        </div>
 
-        <div className="row gap-5">
-          <h1 className="my-3">Movies</h1>
-           {loading && <h3 className="text-white">Loading movies...</h3>}
-           {user.length === 0  && (<h5 className="text-white">No movies found.</h5>)}
+        <div className="row justify-content-center gap-4">
+          {loading && <h4 className="text-white">Loading movies...</h4>}
+          {!loading && user.length === 0 && (
+            <h5 className="text-white text-center">No movies found.</h5>
+          )}
           {user.map((movie, idx) => (
-            <div className="card px-0 mb-3" style={{ width: '18rem' }} key={idx}>
+            <div
+              className="card movie-card p-0 shadow"
+              style={{ width: '18rem', background: "#121212", color: "white" }}
+              key={idx}
+            >
               <img
                 src={movie.Poster}
                 className="card-img-top"
@@ -46,10 +56,9 @@ const MovieSearch = () => {
             </div>
           ))}
         </div>
-        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MovieSearch
+export default MovieSearch;
