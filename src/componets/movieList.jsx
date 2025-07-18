@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../features/user/thunk";
 import './movieList.css'
+import { BiSolidCameraMovie } from "react-icons/bi";
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const MovieList = () => {
     <>
       <Navbar />
       <div className="container py-5">
-        <h2 className="text-center text-warning mb-4">🎞️ Popular Movies</h2>
+        <h2 className="text-center text-warning mb-4"><BiSolidCameraMovie /> Popular Movies</h2>
         <div className="row justify-content-center gap-4">
           {user.map((movie, idx) => (
             <div

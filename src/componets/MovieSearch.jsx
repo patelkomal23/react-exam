@@ -3,6 +3,8 @@ import Navbar from './Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../features/user/thunk';
 import './movieSearch.css'
+import { FaSearch } from "react-icons/fa";
+
 
 const MovieSearch = () => {
   const [query, setQuery] = useState('');
@@ -19,7 +21,8 @@ const MovieSearch = () => {
     <>
       <Navbar />
       <div className="container py-4">
-        <h2 className="text-center text-warning mb-3">🔎 Search Movies</h2>
+        <h2 className="text-center text-warning mb-3"><FaSearch />
+ Search Movies</h2>
         <div className="row justify-content-center">
           <div className="col-md-6">
             <input
