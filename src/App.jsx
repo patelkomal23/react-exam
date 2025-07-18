@@ -1,11 +1,18 @@
 import React from 'react'
-import SignIn from '../../../../Downloads/React-Exam-main/React-Exam-main/src/pages/SignIn'
+import Navbar from './componets/Navbar'
+import SignIn from './pages/SignIn'
+import { Route, Routes } from 'react-router'
+import MovieList from './componets/MovieList'
+import MovieSearch from './componets/MovieSearch'
 
-function App() {
+const App = () => {
   return (
     <>
-
-      
+    <Routes>
+      <Route path='/' element={<SignIn/>}/>
+      <Route path='/list' element={<MovieList/>}/>
+      <Route path='/search' element={<MovieSearch/>}/>
+    </Routes>
     </>
   )
 }
